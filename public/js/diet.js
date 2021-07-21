@@ -141,5 +141,21 @@ const copy = () => {
     let resultados  = `| Peso Ideal | Gasto Energético | Grasa Corporal | IMC  | ICC  | GIA  |\n| ---------- | ---------------- | -------------- | ---- | ---- | ---- |\n| ${getPesoIdeal(val)} Kg        | ${getGastoEnergetico(val)} Kcal            | ${getGrasaCorporal(val)} %             | ${getIMC(val)} m2   | ${getICC(val)} cm   | ${getGIA(val)} cm   |`;
 
     let datos = `**Nombre:** ${val.name}\n**Género:** ${val.genero === "female" ? "Mujer" : "Hombre"}\n\n**Datos:** \n${info}\n\n\n**Resultados:** \n${resultados}`;
-    navigator.clipboard.writeText(datos).then();
+
+    let options = {
+        fadeInDuration: 800,
+        fadeOutDuration: 1000,
+        fadeInterval: 50,
+        visibleDuration: 3000,
+        postHoverVisibleDuration: 500,
+        position: vNotify.positionOption.topRight,
+        sticky: false,
+        showClose: true
+    };
+
+    navigator.clipboard.writeText(datos).then(() => {
+        vNotify.success({text: 'Datos copiados', title:'Listo!', ...options});
+    }, () => {
+        vNotify.error({text: 'Algo anda mal, dile a Jess.', title:'Error', ...options});
+    });
 };

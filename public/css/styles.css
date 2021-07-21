@@ -3,12 +3,12 @@ body, html {
     margin: 0;
 }
 .container {
-    height: 100vh;
+    /*height: 100vh;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
-    margin-top: 40vh;
+    /*margin-top: 40vh;*/
 }
 .header {
     height: 33vh;
@@ -25,7 +25,7 @@ body, html {
     border-bottom: solid 2px #57A3A3;
     position: relative;
     flex-direction: column;
-    position: fixed;
+    /*position: fixed;*/
     width: 100%;
     top: 0;
     z-index: 10;
