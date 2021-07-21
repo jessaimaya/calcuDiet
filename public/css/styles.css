@@ -1,0 +1,301 @@
+body, html {
+    padding: 0;
+    margin: 0;
+}
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin-top: 40vh;
+}
+.header {
+    height: 33vh;
+    background: papayawhip;
+    display: flex;
+    flex: 1;
+    padding: 10px 0;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background: url("../images/background.png") no-repeat;
+    background-position: center;
+    background-size: cover;
+    border-bottom: solid 2px #57A3A3;
+    position: relative;
+    flex-direction: column;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+}
+.avatar{
+    width: 30vw;
+    height: 30vw;
+    display: block;
+    border-radius: 100%;
+    background-color: white;
+    border: solid 1px #827D7E;
+    background-size: contain;
+    background-position: center bottom;
+    -webkit-box-shadow: 1px 0px 15px 3px rgba(51,51,51,0.13);
+    box-shadow: 1px 0px 15px 3px rgba(51,51,51,0.13);
+}
+.avatar.she {
+    background: url("../images/she.svg") white no-repeat center;
+}
+.avatar.he {
+    background: url("../images/he.svg") white no-repeat center;
+}
+.content {
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    padding: 5px;
+}
+.block {
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+}
+.block.copy {
+    flex: 1;
+}
+fieldset {
+    border: none;
+}
+label {
+    font-size: 14px;
+    color: #827D7E;
+    align-self: start;
+    padding-left: 5px;
+}
+input[type="text"] {
+    height: 40px;
+    color: #827D7E;
+    font-size: 18px;
+    text-indent: 10px;
+    padding: 0 5px 0 0;
+    box-sizing: border-box;
+    border: solid 1px #F7C2CC;
+    background-color: white;
+    outline: none;
+    width: 100%;
+    border-radius: 10px;
+}
+.heading {
+    display: inline-block;
+    color: #827D7E;
+    border: solid 1px #827D7E;
+    padding: 4px 5px;
+    position: relative;
+    background: #fff;
+}
+.heading .text {
+    z-index: 3;
+    position: relative;
+    padding: 3px 8px;
+    background-color: white;
+}
+.heading .color {
+    z-index: 2;
+    position: absolute;
+    opacity: 0.3;
+    width: 100%;
+    height: 100%;
+    top: 5px;
+    left: 10px;
+}
+.color.blue {
+    background-color: #57A3A3;
+}
+.color.orange {
+    background-color: #db664a;
+}
+.color.purple {
+    background-color: #b9abf5;
+}
+.color.yellow {
+    background-color: #e2c952;
+}
+.heading .hatched {
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 10px;
+    top: 5px;
+}
+.hatched {
+    background-image:
+            linear-gradient(45deg, transparent 45%, #919195 50%, transparent 55%, transparent 100%),
+            linear-gradient(-45deg, transparent 45%, #919195 50%, transparent 55%, transparent 100%);
+    background-size: 8px 8px;
+    background-position: 4px 4px;
+}
+.row {
+    width: 100%;
+}
+.gender-switch {
+    background: #fff;
+    width: 90%;
+    padding: 0;
+    margin: 15px auto 0;
+    border-radius: 10px;
+    border: solid 1px #F7C2CC;
+    display: block;
+}
+.gender-switch .option{
+    padding: 10px 0;
+    background: #fff;
+    height: 100%;
+    width: 50%;
+    display: inline-block;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+.option.female {
+    border-radius: 10px 0 0 10px;
+}
+.option.male {
+    border-radius: 0 10px 10px 0;
+}
+input[type="radio"]{
+    display: none;
+}
+#female:checked:checked ~ .female,
+#male:checked:checked ~ .male{
+    border-color: #F7C2CC;
+    background: #F7C2CC;
+    -webkit-box-shadow: inset 0px 5px 10px 0px rgba(51,51,51,0.4);
+        box-shadow: inset 0px 5px 10px 0px rgba(51,51,51,0.4);
+}
+.gender-switch .option span{
+    font-size: 20px;
+    color: #827D7E;
+}
+#female:checked:checked ~ .female span,
+#male:checked:checked ~ .male span{
+    color: #fff;
+}
+.row.datos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+}
+.box {
+    border: solid 1px #F7C2CC;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    border-radius: 10px;
+    height: 80px;
+}
+.dato input {
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 50%;
+    margin: 0 auto;
+    display: block;
+    -webkit-box-shadow: inset 0 5px 10px 0 rgba(51,51,51,0.2);
+    box-shadow: inset 0 5px 10px 0 rgba(51,51,51,0.2);
+    border-radius: 10px 10px 0 0;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    color: #827D7E;
+    font-size: 25px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+.dato label {
+    margin-left: 3px;
+    display: block;
+    padding-bottom: 5px;
+}
+.dato-footer {
+    left:0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    background: #F7C2CC;
+    position: absolute;
+    text-align: center;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+.dato-footer .unidad {
+    color: white;
+    font-size: 12px;
+}
+.row.resultados {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 30%;
+    justify-content: space-around;
+    align-content: center;
+    margin: 10px 0;
+}
+.resultado {
+    display: flex;
+    flex-direction: column;
+}
+.res-box {
+    display: flex;
+    background: #F7C2CC;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+}
+.res-name {
+    color:#827D7E;
+    padding: 0;
+    margin: 0 0 5px 5px;
+}
+.res-dato {
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+.res-unidad {
+    color: white;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+.btn-copy {
+    border: solid 1px #F7C2CC;
+    background-color: #F7C2CC;
+    color: white;
+    font-weight: normal;
+    font-size: 20px;
+    width: 70%;
+    margin: 0 auto;
+    display: block;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 5px 0;
+    text-align: center;
+}
+.btn-copy:hover {
+    background-color: #d28b99;
+}

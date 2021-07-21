@@ -3,8 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <title>CalcuDiet</title>
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
 </head>
 <body>
-<h1>CalcuDiet</h1>
+    <form>
+        <div class="container">
+            <div class="header">
+                <div class="avatar she" id="avatar"></div>
+                <fieldset>
+                    <label for="name">Nombre:</label>
+                    <input class="name" type="text" id="name" />
+                </fieldset>
+            </div>
+            <div class="content">
+                <div class="block genero">
+                    <div class="row">
+                        <h2 class="heading">
+                            <span class="text">Género</span>
+                            <span class="color blue"></span>
+                            <span class="hatched"></span>
+                        </h2>
+                        <fieldset class="gender-switch">
+                                <input
+                                        type="radio"
+                                        name="option"
+                                        id="female"
+                                        checked
+                                        onchange="update()"
+                                />
+                                <input type="radio" name="option" id="male" onchange="update()">
+                                <label for="female" class="option female">
+                                    <span>Female</span>
+                                </label><label for="male" class="option male">
+                                    <span>Male</span>
+                                </label>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div class="block datos">
+                    <div class="row">
+                        <h2 class="heading">
+                            <span class="text">Datos</span>
+                            <span class="color orange"></span>
+                            <span class="hatched"></span>
+                        </h2>
+                    </div>
+                    <div class="row datos">
+                        <fieldset class="dato">
+                            <label for="edad">Edad</label>
+                            <div class="box">
+                                <input type="number" name="edad" id="edad" onchange="update()">
+                                <div class="dato-footer">
+                                    <p class="unidad">años</p>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="dato">
+                            <label for="estatura">Estatura</label>
+                            <div class="box">
+                                <input type="number" name="estatura" id="estatura" onchange="update()">
+                                <div class="dato-footer">
+                                    <p class="unidad">cm</p>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="dato">
+                            <label for="peso">Peso</label>
+                            <div class="box">
+                                <input type="number" name="peso" id="peso" onchange="update()">
+                                <div class="dato-footer">
+                                    <p class="unidad">Kg</p>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="dato">
+                            <label for="cintura">Cintura</label>
+                            <div class="box">
+                                <input type="number" name="cintura" id="cintura" onchange="update()">
+                                <div class="dato-footer">
+                                    <p class="unidad">cm</p>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset class="dato">
+                            <label for="cadera">Cadera</label>
+                            <div class="box">
+                                <input type="number" name="cadera" id="cadera" onchange="update()">
+                                <div class="dato-footer">
+                                    <p class="unidad">cm</p>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+
+                <div class="block resultados">
+                    <div class="row">
+                        <h2 class="heading">
+                            <span class="text">Resultados</span>
+                            <span class="color purple"></span>
+                            <span class="hatched"></span>
+                        </h2>
+                    </div>
+                    <div class="row resultados">
+                        <div class="resultado">
+                            <p class="res-name">Peso ideal</p>
+                            <div class="res-box">
+                                <h3 class="res-dato" id="pesoIdeal">0.0</h3>
+                                <p class="res-unidad">Kg</p>
+                            </div>
+                        </div>
+                        <div class="resultado">
+                            <p class="res-name">Gasto Energético</p>
+                            <div class="res-box">
+                                <h3 class="res-dato" id="gastoEnergetico">0.0</h3>
+                                <p class="res-unidad">Kcal</p>
+                            </div>
+                        </div>
+                        <div class="resultado">
+                            <p class="res-name">Grasa Corporal</p>
+                            <div class="res-box">
+                                <h3 class="res-dato" id="grasaCorporal">0.0</h3>
+                                <p class="res-unidad">%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row resultados">
+                        <div class="resultado">
+                            <p class="res-name">IMC</p>
+                            <div class="res-box">
+                                <h3 class="res-dato" id="imc">0.0</h3>
+                                <p class="res-unidad">m2</p>
+                            </div>
+                        </div>
+                        <div class="resultado">
+                            <p class="res-name">ICC</p>
+                            <div class="res-box">
+                                <h3 class="res-dato" id="icc">0.0</h3>
+                                <p class="res-unidad">cm</p>
+                            </div>
+                        </div>
+                        <div class="resultado">
+                            <p class="res-name">GIA</p>
+                            <div class="res-box">
+                                <h3 class="res-dato" id="gia">0.0</h3>
+                                <p class="res-unidad">%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="block copy">
+                        <div class="row">
+                            <h2 class="heading">
+                                <span class="text">Exportar</span>
+                                <span class="color yellow"></span>
+                                <span class="hatched"></span>
+                            </h2>
+                        </div>
+                        <input type="text" id="tabla" hidden>
+                        <div class="btn-copy" onclick="copy()">Copy</div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript" src="./js/diet.js"></script>
 </body>
 </html>
