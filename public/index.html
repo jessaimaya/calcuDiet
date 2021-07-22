@@ -706,7 +706,7 @@
             };
 
             navigator.clipboard.writeText(datos).then(() => {
-                vNotify.success({text: 'Datos copiados', title:'Listo!', ...options});
+                vNotify.success({text: 'Datos copiados.', title:'Listo!', ...options});
             }, () => {
                 vNotify.error({text: 'Algo anda mal, dile a Jess.', title:'Error', ...options});
             });
