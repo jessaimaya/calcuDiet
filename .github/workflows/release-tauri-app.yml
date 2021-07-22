@@ -1,4 +1,4 @@
-name: release-tauri-app
+name: release-tauri-appp
 on:
   watch:
     types: [started]
