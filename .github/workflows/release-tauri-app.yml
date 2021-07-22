@@ -1,7 +1,5 @@
 name: release-tauri-appp
 on:
-  watch:
-    types: [started]
   push:
     branches:
       - main
