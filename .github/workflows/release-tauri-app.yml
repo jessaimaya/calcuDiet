@@ -1,5 +1,6 @@
 name: release-tauri-appp
 on:
+  workflow_dispatch:
   push:
     branches: [ main ]
     paths:
