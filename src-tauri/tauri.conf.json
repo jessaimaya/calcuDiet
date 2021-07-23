@@ -1,6 +1,6 @@
 {
   "package": {
-    "productName": "CalcuDiet",
+    "productName": "calcudiet",
     "version": "0.1.0"
   },
   "build": {
@@ -53,9 +53,9 @@
     },
     "windows": [
       {
-        "title": "CalcuDiet",
-        "width": 450,
-        "height": 550,
+        "title": "calcudiet",
+        "width": 800,
+        "height": 600,
         "resizable": true,
         "fullscreen": false
       }
