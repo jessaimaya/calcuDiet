@@ -125,7 +125,7 @@ const updateICC = val => {
 };
 
 const getGIA = val => {
-    let result = (2.125 * val.edad) + (2.843 * val.cintura) - 22.539;
+    let result = (2.125 * val.edad) + (2.843 * val.cintura) - 225.39;
     return result.toFixed(2);
 };
 
