@@ -1,8 +1,17 @@
+const HOMBRE = "HOMBRE";
+const MUJER = "MUJER";
+const ACTIVIDAD = {
+    sedentaria: 1.2,
+    ligera: 1.375,
+    moderada: 1.55,
+    mucha: 1.725,
+    extra: 1.9,
+};
 window.onload = function() {
     init();
 };
 const init = () => {
-
+     var select = NiceSelect.bind(document.getElementById("actividad"));
 };
 
 const getValues = () => {
@@ -13,12 +22,14 @@ const getValues = () => {
     let $peso = document.getElementById("peso");
     let $cintura = document.getElementById("cintura");
     let $cadera= document.getElementById("cadera");
+    let $actividad= document.getElementById("actividad");
     let $pesoIdeal = document.getElementById("pesoIdeal");
     let $gastoEnergetico = document.getElementById("gastoEnergetico");
     let $grasaCorporal = document.getElementById("grasaCorporal");
     let $imc= document.getElementById("imc");
     let $icc= document.getElementById("icc");
     let $gia= document.getElementById("gia");
+    let $bmr= document.getElementById("bmr");
 
     return {
         name: $name.value,
@@ -28,12 +39,14 @@ const getValues = () => {
         peso: Number($peso.value || 0),
         cintura: Number($cintura.value || 0),
         cadera: Number($cadera.value || 0),
+        actividad: Number(ACTIVIDAD[$actividad.value] || 0),
         pesoIdeal: $pesoIdeal,
         gastoEnergetico: $gastoEnergetico,
         grasaCorporal: $grasaCorporal,
         imc: $imc,
         icc: $icc,
-        gia: $gia
+        gia: $gia,
+        bmr: $bmr,
     }
 }
 
@@ -46,13 +59,13 @@ const update = () => {
     updateIMC(valores);
     updateICC(valores);
     updateGIA(valores);
-    console.log(getValues());
+    updateBMR(valores);
 };
 
 const updateAvatar = (genero) => {
     let $avatar= document.getElementById("avatar");
 
-    if(genero === "female") {
+    if(genero === MUJER) {
         $avatar.classList.remove("he");
         $avatar.classList.add("she");
     } else {
@@ -62,9 +75,12 @@ const updateAvatar = (genero) => {
 }
 
 const getPesoIdeal = val => {
-    let ind = val.genero === "female" ? 2 : 4;
-    let result = val.estatura - 100 - ((val.estatura - 150) / ind);
-     return result.toFixed(2) || 0.0;
+    if (val.estatura > 0) {
+        let ind = val.genero === MUJER ? 2 : 4;
+        let result = val.estatura - 100 - ((val.estatura - 150) / ind);
+        return result.toFixed(2);
+    }
+    return 0.0;
 }
 const updatePesoIdeal = val => {
     if(val.estatura > 0) {
@@ -73,13 +89,16 @@ const updatePesoIdeal = val => {
 };
 
 const getGastoEnergetico = val => {
-    let result = 0.0;
-    if (val.genero === "female") {
-        result = 655.1 + (9.56 * val.peso) + (1.85 * val.estatura) - (4.68 * val.edad);
-    } else {
-        result = 66.47 + (13.75 * val.peso) + (5 * val.estatura) - (6.76 * val.edad);
+    if(val.peso > 0 && val.estatura > 0 && val.edad > 0) {
+        let result = 0.0;
+        if (val.genero === MUJER) {
+            result = 655.1 + (9.56 * val.peso) + (1.85 * val.estatura) - (4.68 * val.edad);
+        } else {
+            result = 66.47 + (13.75 * val.peso) + (5 * val.estatura) - (6.76 * val.edad);
+        }
+        return result.toFixed(2);
     }
-    return result.toFixed(2);
+    return 0.0;
 }
 
 const updateGastoEnergetico = val => {
@@ -89,13 +108,16 @@ const updateGastoEnergetico = val => {
 };
 
 const getGrasaCorporal = val => {
-    let result = 0.0;
-    if (val.genero === "female") {
-        result = .439 * val.cintura + .221 * val.edad - 9.4;
-    } else {
-        result = .567 * val.cintura + .101 * val.edad - 31.8;
+    if(val.cintura > 0 && val.edad > 0) {
+        let result = 0.0;
+        if (val.genero === MUJER) {
+            result = .439 * val.cintura + .221 * val.edad - 9.4;
+        } else {
+            result = .567 * val.cintura + .101 * val.edad - 31.8;
+        }
+        return result.toFixed(2);
     }
-    return result.toFixed(2);
+    return 0.0;
 }
 
 const updateGrasaCorporal = val => {
@@ -105,7 +127,10 @@ const updateGrasaCorporal = val => {
 };
 
 const getIMC = val => {
-    return (val.peso / ((val.estatura / 100 ) * (val.estatura / 100))).toFixed(2);
+    if (val.peso > 0 && val.estatura ) {
+        return (val.peso / ((val.estatura / 100) * (val.estatura / 100))).toFixed(2);
+    }
+    return 0.0;
 }
 
 const updateIMC = (val) => {
@@ -115,7 +140,10 @@ const updateIMC = (val) => {
 };
 
 const getICC = val => {
-    return (val.cintura / val.cadera).toFixed(2);
+    if (val.cintura > 0 && val.cadera > 0) {
+        return (val.cintura / val.cadera).toFixed(2);
+    }
+    return 0.0;
 };
 
 const updateICC = val => {
@@ -125,8 +153,11 @@ const updateICC = val => {
 };
 
 const getGIA = val => {
-    let result = (2.125 * val.edad) + (2.843 * val.cintura) - 225.39;
-    return result.toFixed(2);
+    if(val.edad > 0 && val.cintura > 0) {
+        let result = (2.125 * val.edad) + (2.843 * val.cintura) - 225.39;
+        return result.toFixed(2);
+    }
+    return 0.0;
 };
 
 const updateGIA = val => {
@@ -135,12 +166,31 @@ const updateGIA = val => {
   }
 };
 
+const bmr = ({genero, peso, estatura, edad, actividad} = datos) => {
+    const harris = genero === HOMBRE ? 5 : 161;
+    const prev = 10 * peso + 6.25 * estatura;
+    return genero === HOMBRE ? (prev - 5 * edad + 5) : (prev - 5 * edad -161);
+}
+
+const getBMR = val => {
+    if(val.edad > 0 && val.peso > 0 > 0 && val.estatura > 0 && val.actividad > 0) {
+        return (bmr(val) * val.actividad).toFixed(2);
+    }
+    return 0.0;
+}
+
+const updateBMR = val => {
+    if(val.edad > 0 && val.peso > 0 > 0 && val.estatura > 0 && val.actividad > 0) {
+        val.bmr.textContent = getBMR(val);
+    }
+};
+
 const copy = () => {
     let val = getValues();
-    let info = `| Edad | Estatura | Peso | Cintura | Cadera |\n| ---- | -------- | ---- | ------- | ------ |\n| ${val.edad} años    | ${val.estatura} cm        | ${val.peso} kg    | ${val.cintura} cm       | ${val.cadera} cm      |`;
-    let resultados  = `| Peso Ideal | Gasto Energético | Grasa Corporal | IMC  | ICC  | GIA  |\n| ---------- | ---------------- | -------------- | ---- | ---- | ---- |\n| ${getPesoIdeal(val)} Kg        | ${getGastoEnergetico(val)} Kcal            | ${getGrasaCorporal(val)} %             | ${getIMC(val)} m2   | ${getICC(val)} cm   | ${getGIA(val)} cm   |`;
+    let info = `| Edad | Estatura | Peso | Cintura | Cadera | Actividad|\n| ---- | -------- | ---- | ------- | ------ | ------ |\n| ${val.edad} años    | ${val.estatura} cm        | ${val.peso} kg    | ${val.cintura} cm       | ${val.cadera} cm      | ${document.getElementById("actividad").value}`;
+    let resultados  = `| Peso Ideal | Gasto Energético | Grasa Corporal | IMC  | ICC  | GIA  | BMR |\n| ---------- | ---------------- | -------------- | ---- | ---- | ---- | ---- |\n| ${getPesoIdeal(val)} Kg        | ${getGastoEnergetico(val)} Kcal            | ${getGrasaCorporal(val)} %             | ${getIMC(val)} m2   | ${getICC(val)} cm   | ${getGIA(val)} cm   | ${getBMR(val)} Kcal |`;
 
-    let datos = `**Nombre:** ${val.name}\n**Género:** ${val.genero === "female" ? "Mujer" : "Hombre"}\n\n**Datos:** \n${info}\n\n\n**Resultados:** \n${resultados}`;
+    let datos = `**Nombre:** ${val.name}\n**Género:** ${val.genero === MUJER ? "Mujer" : "Hombre"}\n\n**Datos:** \n${info}\n\n\n**Resultados:** \n${resultados}`;
 
     let options = {
         fadeInDuration: 800,
