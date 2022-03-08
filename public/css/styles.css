@@ -157,17 +157,17 @@ input[type="text"] {
     text-align: center;
     transition: all 0.3s ease;
 }
-.option.female {
+.option.MUJER{
     border-radius: 10px 0 0 10px;
 }
-.option.male {
+.option.HOMBRE {
     border-radius: 0 10px 10px 0;
 }
 input[type="radio"]{
     display: none;
 }
-#female:checked:checked ~ .female,
-#male:checked:checked ~ .male{
+#MUJER:checked:checked ~ .MUJER,
+#HOMBRE:checked:checked ~ .HOMBRE{
     border-color: #F7C2CC;
     background: #F7C2CC;
     -webkit-box-shadow: inset 0px 5px 10px 0px rgba(51,51,51,0.4);
@@ -177,8 +177,8 @@ input[type="radio"]{
     font-size: 20px;
     color: #827D7E;
 }
-#female:checked:checked ~ .female span,
-#male:checked:checked ~ .male span{
+#MUJER:checked:checked ~ .MUJER span,
+#HOMBRE:checked:checked ~ .HOMBRE span{
     color: #fff;
 }
 .row.datos {
@@ -298,4 +298,8 @@ input[type=number] {
 }
 .btn-copy:hover {
     background-color: #d28b99;
+}
+.nice-select .option {
+    color: #999;
+    border-top: solid 1px #F7C2CC;
 }

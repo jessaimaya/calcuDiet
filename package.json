@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/jessaimaya/calcuDiet#readme",
   "devDependencies": {
-    "@tauri-apps/cli": "^1.0.0-beta.6"
+    "@tauri-apps/cli": "^1.0.0-rc.7"
   },
   "dependencies": {
     "@tauri-apps/api": "^1.0.0-beta.5"
